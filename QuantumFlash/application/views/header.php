@@ -8,7 +8,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>UpTrade.io</title>
+	<title>Quantum Flash</title>
 
 	<link href="<?php echo base_url('assets/css/bootstrap.spacelab.min.css') ?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">    

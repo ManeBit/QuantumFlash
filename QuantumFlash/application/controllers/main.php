@@ -17,6 +17,8 @@ class Main extends CI_Controller {
 	
 	public function quiz($name = '') {
 		$data['quiz'] = $this->model_quiz->get($name);
+		$data['praises'] = $this->model_quiz->praises();
+		$data['taunts'] = $this->model_quiz->taunts();
 		
 		if ($data['quiz'] == '') {
 			redirect('/');

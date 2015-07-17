@@ -1,3 +1,37 @@
+<script type="text/javascript">
+	var quiz = '<?php echo $quiz; ?>';
+	var praises = '<?php echo $praises; ?>';
+	var taunts = '<?php echo $taunts; ?>';
+	
+	console.log(quiz);
+	console.log(praises);
+	console.log(taunts);
+	
+	// parse the json like this.
+	var parsedQ = JSON.parse(quiz);
+	console.log(parsedQ);
+	
+	// you can load the test data with
+	// http://localhost/QuantumFlash/main/quiz/test
+	// http://localhost/QuantumFlash/main/quiz/{set_name}
+	
+	/*
+	// some demos
+	
+	var row = $("<tr id='bet_"+i+"' />");
+		row.append(td + timeRow + end_td);
+		row.append(td + typeRow + end_td);
+		row.append(td + amountRow + end_td);
+		row.append(td + resultRow + end_td);
+		
+	$("#view_pending_table").append(row);
+	
+	$("#confirmed_balance_info").html(symbol.icon + confirmed);
+	
+	
+	*/
+</script>
+
 <div class="container">
       <!-- navbar here -->
 		<?php $this->load->view('navbar'); ?>
