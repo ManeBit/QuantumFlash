@@ -97,6 +97,7 @@
     // http://localhost/QuantumFlash/main/quiz/{set_name}
 
     var currentIndex = 0;
+    var nCorrect = 0;
 
     var loadNextQuestion = function() {
 
@@ -132,6 +133,8 @@
             
             pInfo.innerHTML = parsedP[Math.floor(Math.random() * parsedP.length)];
             pInfo.setAttribute("class", "bg-success");
+            
+            nCorrect++;
 
         } else {
 
@@ -139,11 +142,21 @@
             pInfo.setAttribute("class", "bg-danger");
 
         }
-
+        
         button.innerHTML = "Next";
         button.setAttribute("onclick", "loadNextQuestion()");
         
         currentIndex++;
+        
+        updateStats();
+        
+    }
+    
+    var updateStats = function() {
+        
+        sCorrect.innerHTML = nCorrect;
+        sTotal.innerHTML = currentIndex;
+        kdr.innerHTML = ((nCorrect/currentIndex)*100).toFixed(2);
         
     }
 
@@ -154,8 +167,12 @@
         iAnswer = document.getElementById("input-answer");
         pInfo = document.getElementById("p-praise-taunt");
         button = document.getElementById("button-next");
+        sCorrect = document.getElementById("number-correct");
+        sTotal = document.getElementById("number-total");
+        kdr = document.getElementById("kdr");
         
         loadNextQuestion();
+        updateStats();
         
     });
 
@@ -206,6 +223,20 @@
 
             </form>
 
+        </div>
+    
+        <div class="jumbotron">
+            
+            <h3>Stats</h3>
+            
+            <hr/>
+            
+            <div id="div-stats">
+            
+                <p><span id="number-correct"></span> correct out of <span id="number-total"></span> (<span id="kdr"></span>%)</p>
+            
+            </div>
+    
         </div>
 
         <!-- internal footer here -->
