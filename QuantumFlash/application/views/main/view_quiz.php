@@ -98,13 +98,20 @@
 
     var currentIndex = 0;
     var nCorrect = 0;
+    
+    var shuffle = function(a) {
+        var i = a.length, temp, j;
+        
+        while (i) {
+            j = Math.floor(Math.random() * i--);
+            t = a[i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+        return a;
+    }
 
     var loadNextQuestion = function() {
-
-        if (currentIndex >= parsedQ.length) {
-            console.log("we're done! wheee");
-            return;
-        }
 
         resultHTML = parsedQ[currentIndex][0];
         if (isChem(resultHTML)) {
@@ -143,13 +150,25 @@
 
         }
         
-        button.innerHTML = "Next";
-        button.setAttribute("onclick", "loadNextQuestion()");
-        
         currentIndex++;
         
         updateStats();
         
+        if (currentIndex >= parsedQ.length) {
+            
+            button.innerHTML = "Done!";
+            button.setAttribute("onclick", "document.getElementById('jumbotron-stats').scrollIntoView()");
+            setTimeout(function() 
+                       {document.getElementById("jumbotron-stats").scrollIntoView();},
+                       1000);
+            return;
+            
+        } else {
+        
+            button.innerHTML = "Next";
+            button.setAttribute("onclick", "loadNextQuestion()");
+        
+        }
     }
     
     var updateStats = function() {
@@ -171,6 +190,7 @@
         sTotal = document.getElementById("number-total");
         kdr = document.getElementById("kdr");
         
+        parsedQ = shuffle(parsedQ);
         loadNextQuestion();
         updateStats();
         
@@ -225,7 +245,7 @@
 
         </div>
     
-        <div class="jumbotron">
+        <div class="jumbotron" id="jumbotron-stats">
             
             <h3>Stats</h3>
             
